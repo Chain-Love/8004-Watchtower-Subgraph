@@ -2,7 +2,7 @@
 ERC-8004 Agent entity — one per tokenId in the IdentityRegistry.
 Tracks identity metadata and aggregated reputation from the ReputationRegistry.
 """
-type Agent @entity {
+type Agent @entity(immutable: false) {
   "tokenId as string"
   id: ID!
   agentId: BigInt!
@@ -35,7 +35,7 @@ type Agent @entity {
 Individual feedback entry from the ReputationRegistry.
 Stored so revocations can subtract from the running aggregate.
 """
-type Feedback @entity {
+type Feedback @entity(immutable: false) {
   "agentId-clientAddress-feedbackIndex"
   id: ID!
   agent: Agent!
