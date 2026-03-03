@@ -1,0 +1,71 @@
+"""
+ERC-8004 Agent entity — one per tokenId in the IdentityRegistry.
+Tracks identity metadata and aggregated reputation from the ReputationRegistry.
+"""
+type Agent @entity {
+  "tokenId as string"
+  id: ID!
+  agentId: BigInt!
+  owner: Bytes!
+  agentURI: String!
+  "Classified URI type: ipfs, https, data, arweave, or unknown"
+  agentURIType: String!
+
+  "On-chain metadata: verified agent wallet (set via EIP-712/ERC-1271)"
+  agentWallet: Bytes
+
+  registeredAt: BigInt!
+  registeredBlock: BigInt!
+  "Last time the entity was modified (registration, URI update, transfer, feedback, etc.)"
+  updatedAt: BigInt!
+
+  "Total feedback entries ever recorded (including revoked)"
+  totalFeedbackCount: Int!
+  "Active (non-revoked) feedback entries"
+  activeFeedbackCount: Int!
+  "Sum of normalised feedback values (18-decimal BigDecimal)"
+  feedbackValueSum: BigDecimal!
+  "feedbackValueSum / activeFeedbackCount  (zero when no active feedback)"
+  averageRating: BigDecimal!
+
+  feedbacks: [Feedback!]! @derivedFrom(field: "agent")
+}
+
+"""
+Individual feedback entry from the ReputationRegistry.
+Stored so revocations can subtract from the running aggregate.
+"""
+type Feedback @entity {
+  "agentId-clientAddress-feedbackIndex"
+  id: ID!
+  agent: Agent!
+  clientAddress: Bytes!
+  feedbackIndex: BigInt!
+  value: BigInt!
+  valueDecimals: Int!
+  "value converted to BigDecimal: value / 10^valueDecimals"
+  normalizedValue: BigDecimal!
+  tag1: String!
+  tag2: String!
+  endpoint: String!
+  feedbackURI: String!
+  feedbackHash: Bytes!
+  isRevoked: Boolean!
+  createdAt: BigInt!
+  createdBlock: BigInt!
+
+  responses: [FeedbackResponse!]! @derivedFrom(field: "feedback")
+}
+
+"""
+Agent's response to a piece of feedback (ResponseAppended event).
+"""
+type FeedbackResponse @entity(immutable: true) {
+  "agentId-clientAddress-feedbackIndex-responseIndex"
+  id: ID!
+  feedback: Feedback!
+  responseURI: String!
+  responseHash: Bytes!
+  createdAt: BigInt!
+  createdBlock: BigInt!
+}

@@ -1,0 +1,19 @@
+{
+  "name": "erc8004-subgraph",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy:arbitrum": "graph deploy --node https://api.studio.thegraph.com/deploy/ erc8004-arbitrum",
+    "deploy:ethereum": "graph deploy --node https://api.studio.thegraph.com/deploy/ erc8004-ethereum",
+    "deploy:base": "graph deploy --node https://api.studio.thegraph.com/deploy/ erc8004-base",
+    "deploy:polygon": "graph deploy --node https://api.studio.thegraph.com/deploy/ erc8004-polygon",
+    "create:local": "graph create --node http://localhost:8020/ erc8004",
+    "remove:local": "graph remove --node http://localhost:8020/ erc8004",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 erc8004"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.95.2",
+    "@graphprotocol/graph-ts": "^0.36.0"
+  }
+}
