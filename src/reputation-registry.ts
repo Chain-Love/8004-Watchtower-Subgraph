@@ -3,8 +3,8 @@ import {
   NewFeedback,
   FeedbackRevoked,
   ResponseAppended,
-} from "../../generated/ReputationRegistry/ReputationRegistry"
-import { Agent, Feedback, FeedbackResponse } from "../../generated/schema"
+} from "../generated/ReputationRegistry/ReputationRegistry"
+import { Agent, Feedback, FeedbackResponse } from "../generated/schema"
 
 const ZERO_BD = BigDecimal.zero()
 
@@ -52,14 +52,14 @@ export function handleNewFeedback(event: NewFeedback): void {
   let id = feedbackId(
     event.params.agentId,
     event.params.clientAddress,
-    BigInt.fromI64(event.params.feedbackIndex),
+    event.params.feedbackIndex,
   )
 
   let fb = new Feedback(id)
   fb.agent = agentIdStr
   fb.clientAddress = event.params.clientAddress
-  fb.feedbackIndex = BigInt.fromI64(event.params.feedbackIndex)
-  fb.value = BigInt.fromI64(event.params.value as i64)
+  fb.feedbackIndex = event.params.feedbackIndex
+  fb.value = event.params.value
   fb.valueDecimals = event.params.valueDecimals
   fb.normalizedValue = normalizeValue(fb.value, fb.valueDecimals)
   fb.tag1 = event.params.tag1
@@ -85,7 +85,7 @@ export function handleFeedbackRevoked(event: FeedbackRevoked): void {
   let id = feedbackId(
     event.params.agentId,
     event.params.clientAddress,
-    BigInt.fromI64(event.params.feedbackIndex),
+    event.params.feedbackIndex,
   )
 
   let fb = Feedback.load(id)
@@ -113,7 +113,7 @@ export function handleResponseAppended(event: ResponseAppended): void {
   let fbId = feedbackId(
     event.params.agentId,
     event.params.clientAddress,
-    BigInt.fromI64(event.params.feedbackIndex),
+    event.params.feedbackIndex,
   )
 
   let fb = Feedback.load(fbId)

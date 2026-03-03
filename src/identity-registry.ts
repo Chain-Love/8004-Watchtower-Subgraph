@@ -4,8 +4,8 @@ import {
   URIUpdated,
   Transfer,
   MetadataSet,
-} from "../../generated/IdentityRegistry/IdentityRegistry"
-import { Agent } from "../../generated/schema"
+} from "../generated/IdentityRegistry/IdentityRegistry"
+import { Agent } from "../generated/schema"
 
 const ZERO_BD = BigDecimal.zero()
 const ZERO_ADDRESS = Bytes.fromHexString("0x0000000000000000000000000000000000000000")
