@@ -39,14 +39,14 @@
       "startBlock": 82458532
     }
   },
-  "avalanche": {
+  "avax-c": {
     "IdentityRegistry": {
       "address": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
-      "startBlock": 7833000
+      "startBlock": 77388999
     },
     "ReputationRegistry": {
       "address": "0x8004BAa17C55a88189AE136b182e5fdA19dE9b63",
-      "startBlock": 7833000
+      "startBlock": 77388999
     }
   }
 }
