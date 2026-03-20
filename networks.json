@@ -1,4 +1,24 @@
 {
+  "filecoin-mainnet": {
+    "IdentityRegistry": {
+      "address": "0x5aCbdA5f70F82AcAf346F57e76E43e7904C776Dd",
+      "startBlock": 5857117
+    },
+    "ReputationRegistry": {
+      "address": "0x9305baBF6C233eEdff4fa4F73010557eA376258F",
+      "startBlock": 5857119
+    }
+  },
+  "filecoin-calibration": {
+    "IdentityRegistry": {
+      "address": "0x5aCbdA5f70F82AcAf346F57e76E43e7904C776Dd",
+      "startBlock": 3556476
+    },
+    "ReputationRegistry": {
+      "address": "0x9305baBF6C233eEdff4fa4F73010557eA376258F",
+      "startBlock": 3556478
+    }
+  },
   "arbitrum-one": {
     "IdentityRegistry": {
       "address": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
