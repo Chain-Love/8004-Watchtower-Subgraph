@@ -9,7 +9,7 @@
       "startBlock": 5857119
     }
   },
-  "filecoin-calibration": {
+  "calibration": {
     "IdentityRegistry": {
       "address": "0x5aCbdA5f70F82AcAf346F57e76E43e7904C776Dd",
       "startBlock": 3556476
